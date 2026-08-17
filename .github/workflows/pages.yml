@@ -1,10 +1,12 @@
 name: Deploy Vebo UI Demo
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -19,11 +21,11 @@ jobs:
         with:
           repository: SridharSathaSivam/vebo-ui
           path: vebo-source
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.VEBO_UI_TOKEN }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
       - name: Build Vebo UI
         working-directory: vebo-source
         run: |
