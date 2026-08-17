@@ -1,0 +1,45 @@
+name: Deploy Vebo UI Demo
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout demo
+        uses: actions/checkout@v4
+      - name: Checkout private Vebo UI source
+        uses: actions/checkout@v4
+        with:
+          repository: SridharSathaSivam/vebo-ui
+          path: vebo-source
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build Vebo UI
+        working-directory: vebo-source
+        run: |
+          npm install
+          npm run build
+      - name: Prepare Pages
+        run: |
+          cp vebo-source/dist/*.js ./vebo-ui.js
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp vebo-ui.js _site/vebo-ui.js
+          touch _site/.nojekyll
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
