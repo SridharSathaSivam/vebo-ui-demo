@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vebo UI Demo</title>
+  <style>
+    :root { font-family: Inter, system-ui, sans-serif; color: #172033; background: #f7f8fb; }
+    body { margin: 0; }
+    header { padding: 40px 24px; background: #172033; color: white; }
+    main { max-width: 1100px; margin: auto; padding: 32px 24px 60px; }
+    section { background: white; border: 1px solid #e4e7ec; border-radius: 14px; padding: 24px; margin: 20px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    h1 { margin: 0 0 8px; } h2 { margin-top: 0; font-size: 20px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 7px; }
+    .demo-box { padding: 16px; border: 1px dashed #cbd0d9; border-radius: 10px; }
+  </style>
+  <script type="module" src="./vebo-ui.js"></script>
+</head>
+<body>
+  <header><main><h1>Vebo UI</h1><div>Native Web Components demo — Angular, React, Vue and HTML compatible.</div></main></header>
+  <main>
+    <section><h2>Form Components</h2><div class="grid">
+      <div class="demo-box"><label>Button</label><vebo-button>Primary action</vebo-button></div>
+      <div class="demo-box"><label>Text input</label><vebo-input placeholder="Enter text"></vebo-input></div>
+      <div class="demo-box"><label>Password</label><vebo-input type="password" placeholder="Password"></vebo-input></div>
+      <div class="demo-box"><label>Number</label><vebo-input type="number" placeholder="0"></vebo-input></div>
+      <div class="demo-box"><label>Masked input</label><vebo-masked-input placeholder="Phone"></vebo-masked-input></div>
+      <div class="demo-box"><label>Multiline</label><vebo-textarea placeholder="Write something..."></vebo-textarea></div>
+      <div class="demo-box"><label>Date & time</label><vebo-date-time-picker></vebo-date-time-picker></div>
+      <div class="demo-box"><label>Date range</label><vebo-date-range-picker></vebo-date-range-picker></div>
+    </div></section>
+  </main>
+</body>
+</html>
