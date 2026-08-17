@@ -31,9 +31,9 @@ jobs:
         run: |
           npm install
           npm run build
+          npx --yes esbuild src/vebo-ui.ts --bundle --format=esm --outfile=../vebo-ui.js
       - name: Prepare Pages
         run: |
-          cp vebo-source/dist/*.js ./vebo-ui.js
           mkdir -p _site
           cp index.html _site/index.html
           cp vebo-ui.js _site/vebo-ui.js
