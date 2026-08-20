@@ -2,34 +2,90 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f6cbd">
   <title>Vebo UI Demo</title>
   <style>
-    :root { font-family: Inter, system-ui, sans-serif; color: #172033; background: #f7f8fb; }
-    body { margin: 0; }
-    header { padding: 40px 24px; background: #172033; color: white; }
-    main { max-width: 1100px; margin: auto; padding: 32px 24px 60px; }
-    section { background: white; border: 1px solid #e4e7ec; border-radius: 14px; padding: 24px; margin: 20px 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-    h1 { margin: 0 0 8px; } h2 { margin-top: 0; font-size: 20px; }
-    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 7px; }
-    .demo-box { padding: 16px; border: 1px dashed #cbd0d9; border-radius: 10px; }
+    :root {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #172033;
+      background: #f7f8fb;
+      --page-padding: clamp(16px, 4vw, 32px);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; overflow-x: hidden; }
+    header {
+      padding: 28px var(--page-padding);
+      background: #0f6cbd;
+      color: white;
+    }
+    header .header-inner { max-width: 1100px; margin: auto; }
+    header h1 { margin: 0 0 8px; font-size: clamp(28px, 7vw, 40px); line-height: 1.1; }
+    header p { margin: 0; font-size: clamp(14px, 3.5vw, 17px); line-height: 1.5; opacity: .95; }
+    main { width: 100%; max-width: 1100px; margin: auto; padding: 20px var(--page-padding) 48px; }
+    section {
+      background: white;
+      border: 1px solid #e4e7ec;
+      border-radius: 14px;
+      padding: clamp(16px, 4vw, 24px);
+      margin: 16px 0;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 4%);
+    }
+    section h2 { margin: 0 0 16px; font-size: clamp(18px, 5vw, 22px); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 12px;
+    }
+    .demo-box {
+      min-width: 0;
+      padding: 14px;
+      border: 1px dashed #cbd0d9;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    vebo-button, vebo-input, vebo-masked-input, vebo-textarea, vebo-date-time-picker, vebo-date-range-picker {
+      max-width: 100%;
+    }
+    @media (max-width: 600px) {
+      header { padding: 24px var(--page-padding); }
+      main { padding-top: 12px; }
+      section { margin: 12px 0; }
+      .grid { grid-template-columns: 1fr; gap: 10px; }
+      .demo-box { padding: 12px; }
+    }
+    @media (min-width: 601px) and (max-width: 850px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
   </style>
   <script type="module" src="./vebo-ui.js"></script>
 </head>
 <body>
-  <header><main><h1>Vebo UI</h1><div>Native Web Components demo — Angular, React, Vue and HTML compatible.</div></main></header>
+  <header>
+    <div class="header-inner">
+      <h1>Vebo UI</h1>
+      <p>Native Web Components demo — Angular, React, Vue and HTML compatible.</p>
+    </div>
+  </header>
   <main>
-    <section><h2>Form Components</h2><div class="grid">
-      <div class="demo-box"><label>Button</label><vebo-button>Primary action</vebo-button></div>
-      <div class="demo-box"><label>Text input</label><vebo-input placeholder="Enter text"></vebo-input></div>
-      <div class="demo-box"><label>Password</label><vebo-input type="password" placeholder="Password"></vebo-input></div>
-      <div class="demo-box"><label>Number</label><vebo-input type="number" placeholder="0"></vebo-input></div>
-      <div class="demo-box"><label>Masked input</label><vebo-masked-input placeholder="Phone"></vebo-masked-input></div>
-      <div class="demo-box"><label>Multiline</label><vebo-textarea placeholder="Write something..."></vebo-textarea></div>
-      <div class="demo-box"><label>Date & time</label><vebo-date-time-picker></vebo-date-time-picker></div>
-      <div class="demo-box"><label>Date range</label><vebo-date-range-picker></vebo-date-range-picker></div>
-    </div></section>
+    <section>
+      <h2>Form Components</h2>
+      <div class="grid">
+        <div class="demo-box"><label>Button</label><vebo-button>Primary action</vebo-button></div>
+        <div class="demo-box"><label>Text input</label><vebo-input placeholder="Enter text"></vebo-input></div>
+        <div class="demo-box"><label>Password</label><vebo-input type="password" placeholder="Password"></vebo-input></div>
+        <div class="demo-box"><label>Number</label><vebo-input type="number" placeholder="0"></vebo-input></div>
+        <div class="demo-box"><label>Masked input</label><vebo-masked-input placeholder="Phone"></vebo-masked-input></div>
+        <div class="demo-box"><label>Multiline</label><vebo-textarea placeholder="Write something..."></vebo-textarea></div>
+        <div class="demo-box"><label>Date & time</label><vebo-date-time-picker></vebo-date-time-picker></div>
+        <div class="demo-box"><label>Date range</label><vebo-date-range-picker></vebo-date-range-picker></div>
+      </div>
+    </section>
   </main>
 </body>
 </html>
